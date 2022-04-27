@@ -1,1 +1,1 @@
-# compendium-msw-from-scratch
+# The Plan
