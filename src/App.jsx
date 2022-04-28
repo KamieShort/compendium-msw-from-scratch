@@ -2,6 +2,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Link, Route, Switch } from 'react-router-dom';
 import Header from './components/Header';
 import AnimalList from './views/AnimalList';
+import './App.css';
 
 export default function App() {
   return (
@@ -9,10 +10,10 @@ export default function App() {
       <Header />
       <Switch>
         <Route exact path="/">
-          Check out these <Link to="/recipes">Recipes</Link>
+          Check out these <Link to="/animals">Animals</Link>
         </Route>
 
-        <Route exact path="/recipes">
+        <Route exact path="/animals">
           <Link to="/">Back Home</Link>
           <AnimalList />
         </Route>
