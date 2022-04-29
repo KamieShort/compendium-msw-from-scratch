@@ -24,13 +24,10 @@ export default function AnimalList() {
   // accept a type as an argument
   // filter based on argument value aka type (const filteredAnimals = .filter  )
 
-  const filterAnimals = () => {
-    setType(
-      animals.filter((animal) => animal.animal_type === type || type === 'All')
-    );
-  };
-
-  // (setSelectedType(filterAnimals))
+  // const filterAnimals = () => {
+  //   setType(
+  //     animals.filter((animal) => animal.animal_type === type || type === 'All')
+  //   );
   // };
 
   return (
@@ -41,8 +38,8 @@ export default function AnimalList() {
         setSelectedType={setSelectedType}
       />
       {/* {(filterAnimals.length ? filterAnimals : animals).map((animal) => ( */}
-      {/* {animals.map((animal) => ( */}
-      {filterAnimals().map((animal) => (
+      {/* {filterAnimals().map((animal) => ( */}
+      {animals.map((animal) => (
         <div key={animal.id}>
           <h2>{animal.name}</h2>
           <p>Type: {animal.animal_type}</p>
