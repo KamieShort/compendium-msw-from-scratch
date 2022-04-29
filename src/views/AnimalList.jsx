@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { fetchAnimals } from '../services/fetch';
+import DropDown from '../components/DropDown';
 
 export default function AnimalList() {
   const [animals, setAnimals] = useState([]);
+
+  const [selectedType, setSelectedType] = useState([]);
+  // const [loading, setLoading] = useState(true);
+
+  //
 
   useEffect(() => {
     const getAnimals = async () => {
@@ -14,8 +20,20 @@ export default function AnimalList() {
     getAnimals();
   }, []);
 
+  const handleSelectedType = () => {
+    // accept a type as an argument
+    // filter based on argument value aka type (const filteredAnimals = .filter  )
+    // set animals based on type
+    // (setSelectedType(filterAnimals))
+  };
+
   return (
     <div>
+      <DropDown
+        animals={animals}
+        selectedType={selectedType}
+        setSelectedType={setSelectedType}
+      />
       {animals.map((animal) => (
         <div key={animal.id}>
           <h2>{animal.name}</h2>
