@@ -5,7 +5,7 @@ import DropDown from '../components/DropDown';
 export default function AnimalList() {
   const [animals, setAnimals] = useState([]);
   const [type, setType] = useState([]);
-  const [selectedType, setSelectedType] = useState([]);
+
   const [loading, setLoading] = useState(true);
 
   //
@@ -29,30 +29,28 @@ export default function AnimalList() {
       }
     };
     getAnimals();
-  }, []);
+  }, [type]);
 
   // const handleSelectedType = () => {
   // accept a type as an argument
   // filter based on argument value aka type (const filteredAnimals = .filter  )
 
-  // const filterAnimals = () => {
-  //   setType(
-  //     animals.filter((animal) => animal.animal_type === type || type === 'All')
-  //   );
-  // };
+  const filterAnimals = (animal) => {
+    console.log(animal);
+    setType(
+      animals.filter((animal) => animal.animal_type === type || type === 'All')
+    );
+  };
 
   if (loading) return <div className="loader">Loading...</div>;
 
   return (
     <div>
-      <DropDown
-        animals={animals}
-        selectedType={selectedType}
-        setSelectedType={setSelectedType}
-      />
-      {/* {(filterAnimals.length ? filterAnimals : animals).map((animal) => ( */}
+      <DropDown animals={animals} onChange={filterAnimals} type={type} />
+
       {/* {filterAnimals().map((animal) => ( */}
-      {animals.map((animal) => (
+      {/* {animals.map((animal) => ( */}
+      {(type.length ? type : animals).map((animal) => (
         <div key={animal.id}>
           <h2>{animal.name}</h2>
           <p>Type: {animal.animal_type}</p>

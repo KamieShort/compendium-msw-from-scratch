@@ -14,16 +14,3 @@ const server = setupServer(
 beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
-
-describe('Animal List', () => {
-  it('Should render the array of animals', async () => {
-    render(
-      <MemoryRouter>
-        <AnimalList />
-      </MemoryRouter>
-    );
-
-    const type = await screen.findByText('Type:');
-    expect(type).toBeInTheDocument();
-  });
-});
