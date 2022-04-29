@@ -6,16 +6,27 @@ export default function AnimalList() {
   const [animals, setAnimals] = useState([]);
   const [type, setType] = useState([]);
   const [selectedType, setSelectedType] = useState([]);
-  // const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   //
 
   useEffect(() => {
     const getAnimals = async () => {
-      const data = await fetchAnimals();
+      try {
+        const data = await fetchAnimals();
 
-      setAnimals(data);
-      console.log(data);
+        setAnimals(data);
+        console.log(data);
+
+        setTimeout(() => {
+          setLoading(false);
+        }, 750);
+      } catch (e) {
+        setErrorMessage(
+          'Woops...something went wrong. Please refresh the page.'
+        );
+        setLoading(false);
+      }
     };
     getAnimals();
   }, []);
@@ -29,6 +40,8 @@ export default function AnimalList() {
   //     animals.filter((animal) => animal.animal_type === type || type === 'All')
   //   );
   // };
+
+  if (loading) return <div className="loader">Loading...</div>;
 
   return (
     <div>
