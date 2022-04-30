@@ -13,6 +13,8 @@ describe('AnimalList', () => {
 
     screen.getByText(/loading/i);
 
+    screen.getByRole('heading', { name: /Animals: /i });
+
     // await screen.findByText('Habitat: ');
 
     // container.querySelector('#root > div');

@@ -53,12 +53,13 @@ export default function AnimalList() {
         type={type}
         // setType={setSelectedType}
       />
+      <h2>Animals: </h2>
 
       {/* {filterAnimals().map((animal) => ( */}
       {/* {animals.map((animal) => ( */}
       {(type.length ? type : animals).map((animal) => (
         <ul key={animal.id}>
-          <li>{animal.name}</li>
+          <h2>{animal.name}</h2>
           <li>Type: {animal.animal_type}</li>
           <li>Diet: {animal.diet}</li>
           <li>Habitat: {animal.habitat}</li>
