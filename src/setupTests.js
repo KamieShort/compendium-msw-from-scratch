@@ -4,10 +4,21 @@ import { rest } from 'msw';
 
 global.fetch = fetch;
 
+const animalsApiData = {
+  data: [
+    {
+      animal_type: 'Bird',
+      diet: 'Fruit, seeds, insects, and other small animals',
+      habitat: 'Woodland and savanna',
+      id: 144,
+    },
+  ],
+};
+
 const server = setupServer(
   rest.get(
     'https://zoo-animal-api.herokuapp.com/animals/rand/10',
-    (req, res, ctx) => res(ctx.json())
+    (req, res, ctx) => res(ctx.json(animalsApiData))
   )
 );
 
