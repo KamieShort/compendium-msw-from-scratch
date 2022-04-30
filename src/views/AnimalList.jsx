@@ -53,9 +53,9 @@ export default function AnimalList() {
       {(type.length ? type : animals).map((animal) => (
         <div key={animal.id}>
           <h2>{animal.name}</h2>
-          <p>Type: {animal.animal_type}</p>
-          <p>Diet: {animal.diet}</p>
-          <p>Habitat: {animal.habitat}</p>
+          <h3>Type: {animal.animal_type}</h3>
+          <h3>Diet: {animal.diet}</h3>
+          <h3>Habitat: {animal.habitat}</h3>
           <img src={animal.image_link} height="200" border="3px solid black" />
         </div>
       ))}

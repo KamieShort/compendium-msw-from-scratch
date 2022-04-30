@@ -12,7 +12,16 @@ describe('Animal List', () => {
 
     screen.getByText(/loading/i);
 
-    const type = await screen.findByText('Type:');
-    expect(type).toBeInTheDocument();
+    // const diet = await screen.getAllByRole('heading', {
+    //   name: /diet:/i,
+    // });
+    expect(diet).toBeInTheDocument();
+
+    const filter = await screen.queryAllByText('Mammal');
+    userEvent.type(filter, 'Mammal');
+
+    return waitFor(() => {
+      screen.getByRole('heading', { name: /type/i });
+    });
   });
 });
