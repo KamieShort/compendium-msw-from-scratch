@@ -1,9 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import AnimalList from './AnimalList';
+import userEvent from '@testing-library/user-event';
 
-describe('Animal List', () => {
-  it('Should render the array of animals', async () => {
+describe('AnimalList', () => {
+  it('Should render a list of animals that are filterable', async () => {
     render(
       <MemoryRouter>
         <AnimalList />
@@ -12,16 +13,17 @@ describe('Animal List', () => {
 
     screen.getByText(/loading/i);
 
-    // const diet = await screen.getAllByRole('heading', {
-    //   name: /diet:/i,
-    // });
-    expect(diet).toBeInTheDocument();
+    // await screen.findByText('Habitat: ');
 
-    const filter = await screen.queryAllByText('Mammal');
-    userEvent.type(filter, 'Mammal');
+    // container.querySelector('#root > div');
 
-    return waitFor(() => {
-      screen.getByRole('heading', { name: /type/i });
-    });
+    // userEvent.selectOptions(screen.findByRole('combobox'));
+    // expect(dropDown).toBeInTheDocument();
+
+    // const habitat = screen.getByRole('heading', { name: /habitat: /i });
+    // expect(habitat).toBeInTheDocument();
+
+    // const list = screen.getByRole('list');
+    // expect(list.children.length).toEqual(animals.length);
   });
 });

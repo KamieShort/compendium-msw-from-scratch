@@ -12,5 +12,10 @@ describe('App', () => {
 
     const heading = await screen.findByText('Random Animals All Day!');
     expect(heading).toBeInTheDocument();
+
+    const homeLink = screen.getByRole('link', { name: /Animals/i });
+    expect(homeLink).toBeInTheDocument();
+
+ 
   });
 });

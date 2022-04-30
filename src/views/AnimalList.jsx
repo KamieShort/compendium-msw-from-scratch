@@ -5,6 +5,7 @@ import DropDown from '../components/DropDown';
 export default function AnimalList() {
   const [animals, setAnimals] = useState([]);
   const [type, setType] = useState([]);
+  // const [selectedType, setSelectedType] = useState([]);
 
   const [loading, setLoading] = useState(true);
 
@@ -31,9 +32,9 @@ export default function AnimalList() {
     getAnimals();
   }, [type]);
 
-  // const handleSelectedType = () => {
-  // accept a type as an argument
-  // filter based on argument value aka type (const filteredAnimals = .filter  )
+  // useEffect(() => {
+  //   setType(animals);
+  // }, [selectedType]);
 
   const filterAnimals = (animal) => {
     console.log(animal);
@@ -46,18 +47,23 @@ export default function AnimalList() {
 
   return (
     <div>
-      <DropDown animals={animals} onChange={filterAnimals} type={type} />
+      <DropDown
+        animals={animals}
+        onChange={filterAnimals}
+        type={type}
+        // setType={setSelectedType}
+      />
 
       {/* {filterAnimals().map((animal) => ( */}
       {/* {animals.map((animal) => ( */}
       {(type.length ? type : animals).map((animal) => (
-        <div key={animal.id}>
-          <h2>{animal.name}</h2>
-          <h3>Type: {animal.animal_type}</h3>
-          <h3>Diet: {animal.diet}</h3>
-          <h3>Habitat: {animal.habitat}</h3>
+        <ul key={animal.id}>
+          <li>{animal.name}</li>
+          <li>Type: {animal.animal_type}</li>
+          <li>Diet: {animal.diet}</li>
+          <li>Habitat: {animal.habitat}</li>
           <img src={animal.image_link} height="200" border="3px solid black" />
-        </div>
+        </ul>
       ))}
     </div>
   );
