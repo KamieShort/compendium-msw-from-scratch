@@ -13,7 +13,8 @@ describe('AnimalList', () => {
 
     screen.getByText(/loading/i);
 
-    screen.getByRole('heading', { name: /Animals: /i });
+    const animalName = await screen.findByText('Alpaca');
+    expect(animalName).toBeInTheDocument();
 
     // await screen.findByText('Habitat: ');
 
@@ -22,7 +23,7 @@ describe('AnimalList', () => {
     // userEvent.selectOptions(screen.findByRole('combobox'));
     // expect(dropDown).toBeInTheDocument();
 
-    // const habitat = screen.getByRole('heading', { name: /habitat: /i });
+    // const habitat = screen.getByRole('heading', { name: /habitat: /i });a
     // expect(habitat).toBeInTheDocument();
 
     // const list = screen.getByRole('list');
