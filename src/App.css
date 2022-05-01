@@ -2,3 +2,7 @@ div {
   font-family: 'Nanum Gothic', sans-serif;
   font-weight: 200px;
 }
+
+.header {
+  margin-left: 45%;
+}

@@ -1,12 +1,6 @@
-import {
-  render,
-  screen,
-  container,
-  waitForElementToBeRemoved,
-} from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import AnimalList from './AnimalList';
-import userEvent from '@testing-library/user-event';
 
 describe('AnimalList', () => {
   it('Should render a list of animals that are filterable', async () => {
@@ -21,15 +15,10 @@ describe('AnimalList', () => {
     const animalName = await screen.findByText('Alpaca');
     expect(animalName).toBeInTheDocument();
 
-    // await screen.findByText('Habitat: ');
-
-    // container.querySelector('#root > div');
     screen.getByRole('combobox');
 
-    // const habitat = screen.getByRole('heading', { name: /habitat: /i });a
-    // expect(habitat).toBeInTheDocument();
+    screen.getAllByText(/habitat: tropical rainforest/i);
 
-    // const list = screen.getByRole('list');
-    // expect(list.children.length).toEqual(list.length);
+    screen.getAllByRole('list');
   });
 });

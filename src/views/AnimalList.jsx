@@ -37,7 +37,6 @@ export default function AnimalList() {
   // }, [selectedType]);
 
   const filterAnimals = (animal) => {
-    console.log(animal);
     setType(
       animals.filter((animal) => animal.animal_type === type || type === 'All')
     );
@@ -55,15 +54,18 @@ export default function AnimalList() {
       />
       <h2>Animals: </h2>
 
-      {/* {filterAnimals().map((animal) => ( */}
-      {/* {animals.map((animal) => ( */}
       {(type.length ? type : animals).map((animal) => (
         <ul key={animal.id}>
           <h2>{animal.name}</h2>
           <li>Type: {animal.animal_type}</li>
           <p>Diet: {animal.diet}</p>
           <p>Habitat: {animal.habitat}</p>
-          <img src={animal.image_link} height="200" border="3px solid black" />
+          <img
+            alt="animals"
+            src={animal.image_link}
+            height="200"
+            border="3px solid black"
+          />
         </ul>
       ))}
     </div>
