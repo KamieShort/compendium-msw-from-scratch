@@ -61,8 +61,8 @@ export default function AnimalList() {
         <ul key={animal.id}>
           <h2>{animal.name}</h2>
           <li>Type: {animal.animal_type}</li>
-          <li>Diet: {animal.diet}</li>
-          <li>Habitat: {animal.habitat}</li>
+          <p>Diet: {animal.diet}</p>
+          <p>Habitat: {animal.habitat}</p>
           <img src={animal.image_link} height="200" border="3px solid black" />
         </ul>
       ))}
