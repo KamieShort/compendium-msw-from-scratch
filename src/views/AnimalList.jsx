@@ -1,15 +1,33 @@
 import React, { useState, useEffect } from 'react';
-import { fetchAnimals } from '../services/fetch';
+import { fetchAnimals, fetchType } from '../services/fetch';
 import DropDown from '../components/DropDown';
 
 export default function AnimalList() {
   const [animals, setAnimals] = useState([]);
   const [type, setType] = useState([]);
-  // const [selectedType, setSelectedType] = useState([]);
+  const [filteredList, setFilteredList] = useState([]);
 
   const [loading, setLoading] = useState(true);
 
   //
+
+  // useEffect(() => {
+  //   const getAnimals = async () => {
+  //     try {
+  //       const data = await fetchAnimals();
+
+  //       setAnimals(data);
+  //       console.log(data);
+  //     } catch (e) {
+  //       setErrorMessage(
+  //         'Woops...something went wrong. Please refresh the page.'
+  //       );
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+  //   getAnimals();
+  // }, []);
 
   useEffect(() => {
     const getAnimals = async () => {
@@ -18,26 +36,33 @@ export default function AnimalList() {
 
         setAnimals(data);
         console.log(data);
-
-        setTimeout(() => {
-          setLoading(false);
-        }, 750);
       } catch (e) {
         setErrorMessage(
           'Woops...something went wrong. Please refresh the page.'
         );
+      } finally {
         setLoading(false);
       }
     };
     getAnimals();
-  }, [type]);
+  }, []);
 
   // useEffect(() => {
-  //   setType(animals);
-  // }, [selectedType]);
+  //   const getType = async () => {
+  //     const data = await fetchType(); //try to fetch animal by type//
 
-  const filterAnimals = (animal) => {
-    setType(
+  //     setType(data);
+  //   };
+  //   getType();
+  // }, []);
+
+  // useEffect(() => {
+  //   setType(type);
+  // }, [type]);
+
+  const filteredAnimals = (type) => {
+    setFilteredList(
+      //setFilteredList
       animals.filter((animal) => animal.animal_type === type || type === 'All')
     );
   };
@@ -48,9 +73,10 @@ export default function AnimalList() {
     <div>
       <DropDown
         animals={animals}
-        onChange={filterAnimals}
+        onChange={filteredAnimals}
+        filteredList={filteredList}
         type={type}
-        // setType={setSelectedType}
+        // filteredAnimals={filteredAnimals}
       />
       <h2>Animals: </h2>
 
