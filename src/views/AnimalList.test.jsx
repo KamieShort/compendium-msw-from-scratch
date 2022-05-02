@@ -16,9 +16,12 @@ describe('AnimalList', () => {
     expect(animalName).toBeInTheDocument();
 
     screen.getByRole('combobox');
+    //fix combobox
 
     screen.getAllByText(/habitat: tropical rainforest/i);
 
     screen.getAllByRole('list');
+
+    // /userEvent
   });
 });

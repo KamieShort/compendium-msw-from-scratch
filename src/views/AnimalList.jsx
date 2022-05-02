@@ -4,8 +4,9 @@ import DropDown from '../components/DropDown';
 
 export default function AnimalList() {
   const [animals, setAnimals] = useState([]);
-  const [type, setType] = useState([]);
+  const [type, setType] = useState('');
   const [filteredList, setFilteredList] = useState([]);
+  const [dropdown, setDropdown] = useState([]);
 
   const [loading, setLoading] = useState(true);
 
@@ -35,7 +36,10 @@ export default function AnimalList() {
         const data = await fetchAnimals();
 
         setAnimals(data);
-        console.log(data);
+        const options = data.map((animalType) => {
+          return animalType.animal_type;
+        });
+        setDropdown([...new Set(options)]);
       } catch (e) {
         setErrorMessage(
           'Woops...something went wrong. Please refresh the page.'
@@ -47,9 +51,11 @@ export default function AnimalList() {
     getAnimals();
   }, []);
 
+  console.log(dropdown);
+
   // useEffect(() => {
   //   const getType = async () => {
-  //     const data = await fetchType(); //try to fetch animal by type//
+  //     const data = await fetchType();
 
   //     setType(data);
   //   };
@@ -60,10 +66,13 @@ export default function AnimalList() {
   //   setType(type);
   // }, [type]);
 
-  const filteredAnimals = (type) => {
+  const filteredAnimals = (category) => {
+    console.log(category);
+    setType(category);
     setFilteredList(
-      //setFilteredList
-      animals.filter((animal) => animal.animal_type === type || type === 'All')
+      animals.filter(
+        (animal) => animal.animal_type === category || category === 'All'
+      )
     );
   };
 
@@ -72,15 +81,14 @@ export default function AnimalList() {
   return (
     <div>
       <DropDown
-        animals={animals}
-        onChange={filteredAnimals}
+        dropdown={dropdown}
         filteredList={filteredList}
         type={type}
-        // filteredAnimals={filteredAnimals}
+        filteredAnimals={filteredAnimals}
       />
       <h2>Animals: </h2>
 
-      {(type.length ? type : animals).map((animal) => (
+      {(filteredList.length ? filteredList : animals).map((animal) => (
         <ul key={animal.id}>
           <h2>{animal.name}</h2>
           <li>Type: {animal.animal_type}</li>
