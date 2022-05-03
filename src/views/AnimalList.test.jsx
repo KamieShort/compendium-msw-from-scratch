@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import AnimalList from './AnimalList';
+import userEvent from '@testing-library/user-event';
 
 describe('AnimalList', () => {
   it('Should render a list of animals that are filterable', async () => {
@@ -15,13 +16,16 @@ describe('AnimalList', () => {
     const animalName = await screen.findByText('Alpaca');
     expect(animalName).toBeInTheDocument();
 
-    screen.getByRole('combobox');
-    //fix combobox
-
     screen.getAllByText(/habitat: tropical rainforest/i);
 
-    screen.getAllByRole('list');
+    // screen.getByRole('combobox');
 
-    // /userEvent
+    userEvent.selectOptions(
+      screen.getByRole('combobox'),
+      await screen.findByRole('option', { name: 'Mammal' })
+    );
+    expect(screen.getByRole('option', { name: 'Mammal' }).selected).toBe(true);
+
+    screen.getAllByRole('list');
   });
 });

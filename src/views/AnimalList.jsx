@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchAnimals, fetchType } from '../services/fetch';
+import { fetchAnimals } from '../services/fetch';
 import DropDown from '../components/DropDown';
 
 export default function AnimalList() {
@@ -7,28 +7,7 @@ export default function AnimalList() {
   const [type, setType] = useState('');
   const [filteredList, setFilteredList] = useState([]);
   const [dropdown, setDropdown] = useState([]);
-
   const [loading, setLoading] = useState(true);
-
-  //
-
-  // useEffect(() => {
-  //   const getAnimals = async () => {
-  //     try {
-  //       const data = await fetchAnimals();
-
-  //       setAnimals(data);
-  //       console.log(data);
-  //     } catch (e) {
-  //       setErrorMessage(
-  //         'Woops...something went wrong. Please refresh the page.'
-  //       );
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-  //   getAnimals();
-  // }, []);
 
   useEffect(() => {
     const getAnimals = async () => {
@@ -51,23 +30,7 @@ export default function AnimalList() {
     getAnimals();
   }, []);
 
-  console.log(dropdown);
-
-  // useEffect(() => {
-  //   const getType = async () => {
-  //     const data = await fetchType();
-
-  //     setType(data);
-  //   };
-  //   getType();
-  // }, []);
-
-  // useEffect(() => {
-  //   setType(type);
-  // }, [type]);
-
   const filteredAnimals = (category) => {
-    console.log(category);
     setType(category);
     setFilteredList(
       animals.filter(
