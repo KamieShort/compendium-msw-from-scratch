@@ -6,7 +6,7 @@ export default function AnimalList() {
   const [animals, setAnimals] = useState([]);
   const [type, setType] = useState('');
   const [filteredList, setFilteredList] = useState([]);
-  const [dropdown, setDropdown] = useState([]);
+  const [dropdown, setDropdown] = useState('All');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -18,7 +18,7 @@ export default function AnimalList() {
         const options = data.map((animalType) => {
           return animalType.animal_type;
         });
-        setDropdown([...new Set(options)]);
+        setDropdown(['All', ...new Set(options)]);
       } catch (e) {
         setErrorMessage(
           'Woops...something went wrong. Please refresh the page.'

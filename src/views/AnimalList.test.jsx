@@ -26,6 +26,12 @@ describe('AnimalList', () => {
     );
     expect(screen.getByRole('option', { name: 'Mammal' }).selected).toBe(true);
 
+    const mammal = await screen.findByText('Mammal');
+    expect(mammal).toBeInTheDocument();
+
+    const userSelected = await screen.findByText('Greater Bushbaby');
+    expect(userSelected).toBeInTheDocument();
+
     screen.getAllByRole('list');
   });
 });
